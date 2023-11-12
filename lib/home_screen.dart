@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-enum Language { Engilsh, Spanish, Bangla }
+enum Language { engilsh, spanish, bangla }
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
@@ -25,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, provider, child) {
             return PopupMenuButton(
               onSelected: (Language item) {
-                if (Language.Engilsh.name == item.name) {
+                if (Language.engilsh.name == item.name) {
                   provider.changeLanguage(Locale('en'));
-                } else if (Language.Spanish.name == item.name) {
+                } else if (Language.spanish.name == item.name) {
                   provider.changeLanguage(Locale('es'));
                 } else {
                   provider.changeLanguage(Locale('bn'));
@@ -35,15 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               itemBuilder: (BuildContext context) => <PopupMenuEntry<Language>>[
                 const PopupMenuItem(
-                  value: Language.Engilsh,
+                  value: Language.engilsh,
                   child: Text('English'),
                 ),
                 const PopupMenuItem(
-                  value: Language.Bangla,
+                  value: Language.bangla,
                   child: Text('Bangla'),
                 ),
                 const PopupMenuItem(
-                  value: Language.Spanish,
+                  value: Language.spanish,
                   child: Text('Spanish'),
                 )
               ],
@@ -51,8 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
           })
         ],
       ),
-      body: Column(
-        children: [],
+      body: SafeArea(
+        child : Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(AppLocalizations.of(context)!.details),
+            ),
+          ],
+        ),
       ),
     );
   }
